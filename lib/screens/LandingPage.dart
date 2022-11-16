@@ -81,18 +81,19 @@ class LandingPage extends StatelessWidget {
                       .toList(),
                 ),
               ),
-              addHorizontalSpace(10),
+              addVerticalSpace(20),
               Expanded(
                 child: Padding(
                   padding: sidePadding,
                   child: ListView.builder(
                     itemCount: RE_DATA.length,
                     itemBuilder: (context, index) {
-                      return Text("Item");
+                      // return CardItem(itemData: RE_DATA[index]);
+                      return Text("data");
                     },
                   ),
                 ),
-              )
+              ),
             ],
           ),
         ),
@@ -124,6 +125,65 @@ class ChoiceOption extends StatelessWidget {
         text,
         style: themeData.textTheme.headline5,
       ),
+    );
+  }
+}
+
+class CardItem extends StatelessWidget {
+  final dynamic itemData;
+
+  const CardItem({Key? key, required this.itemData}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final ThemeData themeData = Theme.of(context);
+
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 20),
+      child: Column(children: [
+        Stack(
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(25.0),
+              child: Image.asset(
+                itemData["image"],
+              ),
+            ),
+            const Positioned(
+              top: 15,
+              right: 15,
+              child: BorderBox(
+                height: 50,
+                padding: EdgeInsets.all(0),
+                width: 50,
+                child: Icon(
+                  Icons.favorite_border,
+                  color: COLOR_BLACK,
+                ),
+              ),
+            )
+          ],
+        ),
+        addVerticalSpace(15),
+        Row(
+          children: [
+            Text(
+              "${(itemData["amount"])}",
+              style: themeData.textTheme.headline1,
+            ),
+            addHorizontalSpace(10),
+            Text(
+              "${itemData["address"]}",
+              style: themeData.textTheme.bodyText2,
+            ),
+            addHorizontalSpace(10),
+            Text(
+              "${itemData["bedrooms"]} bedrooms/ ${itemData["bathrooms"]} bathrooms / ${itemData["area"]} sqft",
+              style: themeData.textTheme.headline5,
+            )
+          ],
+        )
+      ]),
     );
   }
 }
