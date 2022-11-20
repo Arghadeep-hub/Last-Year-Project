@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:last_year_project/custom/BorderBox.dart';
+import 'package:last_year_project/custom/ChoiceOption.dart';
 import 'package:last_year_project/sample_data.dart';
 import 'package:last_year_project/utils/constants.dart';
 import 'package:last_year_project/utils/widget_functions.dart';
@@ -30,8 +31,8 @@ class LandingPage extends StatelessWidget {
                   children: const [
                     BorderBox(
                       padding: EdgeInsets.all(0),
-                      width: 50,
-                      height: 50,
+                      width: 45,
+                      height: 45,
                       child: Icon(
                         Icons.menu,
                         color: COLOR_BLACK,
@@ -39,10 +40,10 @@ class LandingPage extends StatelessWidget {
                     ),
                     BorderBox(
                       padding: EdgeInsets.all(0),
-                      width: 50,
-                      height: 50,
+                      width: 45,
+                      height: 45,
                       child: Icon(
-                        Icons.settings,
+                        Icons.bedtime,
                         color: COLOR_BLACK,
                       ),
                     ),
@@ -76,9 +77,47 @@ class LandingPage extends StatelessWidget {
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(
-                  children: ["Bluetooth", "Message", "Voice Over"]
-                      .map((filter) => ChoiceOption(text: filter))
-                      .toList(),
+                  children: const [
+                    Padding(
+                      padding: sidePadding,
+                      child: ChoiceOption(
+                        padding: EdgeInsets.all(0),
+                        width: 40,
+                        height: 40,
+                        text: "Connect via Bluetooth",
+                        child: Icon(
+                          Icons.bluetooth,
+                          color: COLOR_BLACK,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: sidePadding,
+                      child: ChoiceOption(
+                        padding: EdgeInsets.all(0),
+                        width: 40,
+                        height: 40,
+                        text: "Record a Message",
+                        child: Icon(
+                          Icons.keyboard_voice_rounded,
+                          color: COLOR_BLACK,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: sidePadding,
+                      child: ChoiceOption(
+                        padding: EdgeInsets.all(0),
+                        width: 40,
+                        height: 40,
+                        text: "Type a Message",
+                        child: Icon(
+                          Icons.keyboard,
+                          color: COLOR_BLACK,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
               addVerticalSpace(20),
@@ -97,33 +136,6 @@ class LandingPage extends StatelessWidget {
             ],
           ),
         ),
-      ),
-    );
-  }
-}
-
-class ChoiceOption extends StatelessWidget {
-  final String text;
-
-  const ChoiceOption({Key? key, required this.text}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    final ThemeData themeData = Theme.of(context);
-
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20.0),
-        color: COLOR_GREY.withAlpha(25),
-      ),
-      padding: const EdgeInsets.symmetric(
-        horizontal: 20,
-        vertical: 13,
-      ),
-      margin: const EdgeInsets.only(left: 25),
-      child: Text(
-        text,
-        style: themeData.textTheme.headline5,
       ),
     );
   }
